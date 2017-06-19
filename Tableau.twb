@@ -716,7 +716,7 @@
           <groupfilter function='level-members' level='[Calculation_822751416707125251]' />
         </groupfilter>
       </group>
-      <layout dim-ordering='alphabetic' dim-percentage='0.273364' group-percentage='0.0537383' measure-ordering='alphabetic' measure-percentage='0.553738' parameter-percentage='0.119159' show-hidden-fields='true' show-structure='true' user-set-layout='true' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.271028' group-percentage='0.0537383' measure-ordering='alphabetic' measure-percentage='0.556075' parameter-percentage='0.119159' show-hidden-fields='true' show-structure='true' user-set-layout='true' />
       <style>
         <style-rule element='mark'>
           <encoding attr='color' field='[:Measure Names]' palette='nThrive Primary Palette' type='palette'>
@@ -782,7 +782,7 @@
       <activation auto-clear='true' type='on-select' />
       <source dashboard='New_Dash' type='sheet' worksheet='Sales_New' />
       <command command='tsc:tsl-filter'>
-        <param name='exclude' value='Date_Range,Discount_New,Profit_Ratio_goal_New,Profit_Ratio_New,Q1_Perf,Query Response,Sales_New,BarChart2,Date_Range' />
+        <param name='exclude' value='Date_Range,Discount_New,Profit_Ratio_goal_New,Profit_Ratio_New,Q1_Perf,Query Response,Sales_New,LineChart,Date_Range' />
         <param name='on-empty' value='none' />
         <param name='special-fields' value='all' />
         <param name='target' value='New_Dash' />
@@ -800,188 +800,6 @@
     </action>
   </actions>
   <worksheets>
-    <worksheet name='BarChart2'>
-      <table>
-        <view>
-          <datasources>
-            <datasource caption='Orders (Sample - Superstore)' name='federated.0jk5z0m0bc0x711h3g66d0lrjyhx' />
-            <datasource name='Parameters' />
-          </datasources>
-          <datasource-dependencies datasource='Parameters'>
-            <column caption='Visit_Type' datatype='string' name='[Parameter 6]' param-domain-type='list' role='measure' type='nominal' value='&quot;OUTPATIENT&quot;'>
-              <calculation class='tableau' formula='&quot;OUTPATIENT&quot;' />
-            </column>
-          </datasource-dependencies>
-          <datasource-dependencies datasource='federated.0jk5z0m0bc0x711h3g66d0lrjyhx'>
-            <column caption='.' datatype='string' name='[Calculation_546342990615195652]' role='dimension' type='nominal'>
-              <calculation class='tableau' formula='&quot;Here&apos;s your top line performance results&quot;' />
-            </column>
-            <column caption='Choose Visit Type' datatype='string' name='[Calculation_694117354003464193]' role='dimension' type='nominal'>
-              <calculation class='tableau' formula='IF [Parameters].[Parameter 6]= &quot;INPATIENT&quot; THEN &quot;IP Only&quot; &#13;&#10;ELSE &quot;OP Only&quot; END' />
-            </column>
-            <column caption='replace Abc' datatype='string' name='[Calculation_822751416707125251]' role='dimension' type='nominal'>
-              <calculation class='tableau' formula='&quot;&quot;' />
-            </column>
-            <column datatype='real' name='[Discount]' role='measure' type='quantitative' />
-            <column caption='IP/OP Type' datatype='string' name='[IP/OP_Type]' role='dimension' type='nominal' />
-            <column datatype='date' name='[Order Date]' role='dimension' type='ordinal' />
-            <column-instance column='[Discount]' derivation='Sum' name='[sum:Discount:qk]' pivot='key' type='quantitative' />
-            <column-instance column='[Order Date]' derivation='Month-Trunc' name='[tmn:Order Date:qk]' pivot='key' type='quantitative' />
-          </datasource-dependencies>
-          <filter class='categorical' column='[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[Action (.)]'>
-            <groupfilter function='member' level='[Calculation_546342990615195652]' member='&quot;Here&apos;s your top line performance results&quot;' user:ui-action-filter='[Action21]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
-          </filter>
-          <filter class='categorical' column='[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[Action (Choose Visit Type,replace Abc)]'>
-            <groupfilter function='crossjoin' user:ui-action-filter='[Action23]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
-              <groupfilter function='member' level='[Calculation_694117354003464193]' member='&quot;OP Only&quot;' />
-              <groupfilter function='member' level='[Calculation_822751416707125251]' member='&quot;&quot;' />
-            </groupfilter>
-          </filter>
-          <filter class='categorical' column='[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[Action (IP/OP Type)]'>
-            <groupfilter function='member' level='[IP/OP_Type]' member='&quot;IP&quot;' user:ui-action-filter='[Action5]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
-          </filter>
-          <slices>
-            <column>[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[Action (IP/OP Type)]</column>
-            <column>[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[Action (.)]</column>
-            <column>[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[Action (Choose Visit Type,replace Abc)]</column>
-          </slices>
-          <aggregation value='true' />
-        </view>
-        <style>
-          <style-rule element='cell'>
-            <format attr='width' value='196' />
-            <format attr='text-align' value='center' />
-          </style-rule>
-          <style-rule element='header'>
-            <format attr='background-color' scope='cols' value='#d4d4d4' />
-            <format attr='band-color' scope='cols' value='#d4d4d4' />
-            <format attr='background-color' scope='rows' value='#d4d4d4' />
-          </style-rule>
-          <style-rule element='label'>
-            <format attr='text-align' value='center' />
-          </style-rule>
-          <style-rule element='pane'>
-            <format attr='band-color' scope='cols' value='#d4d4d4' />
-            <format attr='background-color' value='#00000000' />
-          </style-rule>
-          <style-rule element='table'>
-            <format attr='band-size' scope='cols' value='1' />
-          </style-rule>
-        </style>
-        <panes>
-          <pane>
-            <view>
-              <breakdown value='auto' />
-            </view>
-            <mark class='Bar' />
-            <mark-sizing custom-mark-size-in-axis-units='1.0' mark-alignment='mark-alignment-left' mark-sizing-setting='marks-scaling-on' use-custom-mark-size='false' />
-            <style>
-              <style-rule element='mark'>
-                <format attr='mark-labels-cull' value='true' />
-                <format attr='mark-labels-show' value='false' />
-              </style-rule>
-              <style-rule element='pane'>
-                <format attr='minwidth' value='-1' />
-                <format attr='maxwidth' value='-1' />
-              </style-rule>
-            </style>
-          </pane>
-        </panes>
-        <rows>[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[sum:Discount:qk]</rows>
-        <cols>[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[tmn:Order Date:qk]</cols>
-      </table>
-    </worksheet>
-    <worksheet name='BarChart3'>
-      <table>
-        <view>
-          <datasources>
-            <datasource caption='Orders (Sample - Superstore)' name='federated.0jk5z0m0bc0x711h3g66d0lrjyhx' />
-            <datasource name='Parameters' />
-          </datasources>
-          <datasource-dependencies datasource='Parameters'>
-            <column caption='Visit_Type' datatype='string' name='[Parameter 6]' param-domain-type='list' role='measure' type='nominal' value='&quot;OUTPATIENT&quot;'>
-              <calculation class='tableau' formula='&quot;OUTPATIENT&quot;' />
-            </column>
-          </datasource-dependencies>
-          <datasource-dependencies datasource='federated.0jk5z0m0bc0x711h3g66d0lrjyhx'>
-            <column caption='.' datatype='string' name='[Calculation_546342990615195652]' role='dimension' type='nominal'>
-              <calculation class='tableau' formula='&quot;Here&apos;s your top line performance results&quot;' />
-            </column>
-            <column caption='Choose Visit Type' datatype='string' name='[Calculation_694117354003464193]' role='dimension' type='nominal'>
-              <calculation class='tableau' formula='IF [Parameters].[Parameter 6]= &quot;INPATIENT&quot; THEN &quot;IP Only&quot; &#13;&#10;ELSE &quot;OP Only&quot; END' />
-            </column>
-            <column caption='replace Abc' datatype='string' name='[Calculation_822751416707125251]' role='dimension' type='nominal'>
-              <calculation class='tableau' formula='&quot;&quot;' />
-            </column>
-            <column datatype='real' name='[Discount]' role='measure' type='quantitative' />
-            <column caption='IP/OP Type' datatype='string' name='[IP/OP_Type]' role='dimension' type='nominal' />
-            <column datatype='date' name='[Order Date]' role='dimension' type='ordinal' />
-            <column-instance column='[Discount]' derivation='Sum' name='[sum:Discount:qk]' pivot='key' type='quantitative' />
-            <column-instance column='[Order Date]' derivation='Month-Trunc' name='[tmn:Order Date:qk]' pivot='key' type='quantitative' />
-          </datasource-dependencies>
-          <filter class='categorical' column='[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[Action (.)]'>
-            <groupfilter function='member' level='[Calculation_546342990615195652]' member='&quot;Here&apos;s your top line performance results&quot;' user:ui-action-filter='[Action21]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
-          </filter>
-          <filter class='categorical' column='[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[Action (Choose Visit Type,replace Abc)]'>
-            <groupfilter function='crossjoin' user:ui-action-filter='[Action23]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
-              <groupfilter function='member' level='[Calculation_694117354003464193]' member='&quot;OP Only&quot;' />
-              <groupfilter function='member' level='[Calculation_822751416707125251]' member='&quot;&quot;' />
-            </groupfilter>
-          </filter>
-          <filter class='categorical' column='[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[Action (IP/OP Type)]'>
-            <groupfilter function='member' level='[IP/OP_Type]' member='&quot;IP&quot;' user:ui-action-filter='[Action5]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
-          </filter>
-          <slices>
-            <column>[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[Action (IP/OP Type)]</column>
-            <column>[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[Action (.)]</column>
-            <column>[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[Action (Choose Visit Type,replace Abc)]</column>
-          </slices>
-          <aggregation value='true' />
-        </view>
-        <style>
-          <style-rule element='cell'>
-            <format attr='width' value='196' />
-            <format attr='text-align' value='center' />
-          </style-rule>
-          <style-rule element='header'>
-            <format attr='background-color' scope='cols' value='#d4d4d4' />
-            <format attr='band-color' scope='cols' value='#d4d4d4' />
-            <format attr='background-color' scope='rows' value='#d4d4d4' />
-          </style-rule>
-          <style-rule element='label'>
-            <format attr='text-align' value='center' />
-          </style-rule>
-          <style-rule element='pane'>
-            <format attr='band-color' scope='cols' value='#d4d4d4' />
-            <format attr='background-color' value='#00000000' />
-          </style-rule>
-          <style-rule element='table'>
-            <format attr='band-size' scope='cols' value='1' />
-          </style-rule>
-        </style>
-        <panes>
-          <pane>
-            <view>
-              <breakdown value='auto' />
-            </view>
-            <mark class='Bar' />
-            <mark-sizing custom-mark-size-in-axis-units='1.0' mark-alignment='mark-alignment-left' mark-sizing-setting='marks-scaling-on' use-custom-mark-size='false' />
-            <style>
-              <style-rule element='mark'>
-                <format attr='mark-labels-cull' value='true' />
-                <format attr='mark-labels-show' value='false' />
-              </style-rule>
-              <style-rule element='pane'>
-                <format attr='minwidth' value='-1' />
-                <format attr='maxwidth' value='-1' />
-              </style-rule>
-            </style>
-          </pane>
-        </panes>
-        <rows>[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[sum:Discount:qk]</rows>
-        <cols>[federated.0jk5z0m0bc0x711h3g66d0lrjyhx].[tmn:Order Date:qk]</cols>
-      </table>
-    </worksheet>
     <worksheet name='Date_Range'>
       <table>
         <view>
@@ -1944,7 +1762,7 @@
           <layout-cache minheight='198' minwidth='152' type-h='scalable' type-w='scalable' />
         </zone>
         <zone h='24625' id='26' type='empty' w='99100' x='600' y='49875' />
-        <zone h='24625' id='27' name='BarChart2' show-title='false' w='99100' x='600' y='49875' />
+        <zone h='24625' id='27' name='LineChart' show-title='false' w='99100' x='600' y='49875' />
         <zone h='5500' id='28' mode='compact' param='[Parameters].[Parameter 7]' type='paramctrl' w='16000' x='59100' y='20125' />
       </zones>
     </dashboard>
@@ -1952,9 +1770,6 @@
   <windows source-height='30'>
     <window class='dashboard' name='New_Dash'>
       <viewpoints>
-        <viewpoint name='BarChart2'>
-          <zoom type='entire-view' />
-        </viewpoint>
         <viewpoint name='Date_Range' />
         <viewpoint name='Discount_New'>
           <zoom type='entire-view' />
@@ -1982,6 +1797,9 @@
               </tuple-reference>
             </tuple-selection>
           </selection-collection>
+        </viewpoint>
+        <viewpoint name='LineChart'>
+          <zoom type='entire-view' />
         </viewpoint>
         <viewpoint name='Profit_Ratio_New'>
           <zoom type='entire-view' />
@@ -2045,45 +1863,7 @@
       </viewpoints>
       <active id='27' />
     </window>
-    <window class='worksheet' name='BarChart2'>
-      <cards>
-        <edge name='left'>
-          <strip size='160'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-        </edge>
-      </cards>
-    </window>
-    <window class='worksheet' maximized='true' name='BarChart3'>
-      <cards>
-        <edge name='left'>
-          <strip size='160'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-        </edge>
-      </cards>
-    </window>
-    <window class='worksheet' name='LineChart'>
+    <window class='worksheet' maximized='true' name='LineChart'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -2278,152 +2058,6 @@
     </window>
   </windows>
   <thumbnails>
-    <thumbnail height='192' name='BarChart2' width='192'>
-      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
-      GbjCtWUbAAAAAElFTkSuQmCC
-    </thumbnail>
-    <thumbnail height='192' name='BarChart3' width='192'>
-      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
-      GbjCtWUbAAAAAElFTkSuQmCC
-    </thumbnail>
     <thumbnail height='192' name='LineChart' width='192'>
       iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAAA7EAAAOxAGVKw4b
       AAAgAElEQVR4nO2deWwkV37fv3VXd/XdZPPmcEjODOdcaTSj1e5KXu2uVtqsY3uBOHbWQBJj
